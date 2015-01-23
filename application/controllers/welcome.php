@@ -30,7 +30,7 @@ class Welcome extends CI_Controller {
         $data['ec'] = date('Y-m-d H:i:s');
         $data['list'] = array('1' => 'a', '2' => 'b');
 
-        //$data['page'] = 'welcome/uploads';
+        $data['page'] = 'welcome/uploads';
         $this->load->view('common/body',$data);
         //$this->load->view('common/head');
         //$this->load->view('welcome/message');
