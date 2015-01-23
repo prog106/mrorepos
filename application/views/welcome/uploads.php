@@ -1,9 +1,39 @@
-<h1>Uploadify Demo [ <?=$ec?> ]</h1>
+<h1>Demo [ <?=$ec?> ]</h1>
+리스트1
+<table border="1">
 <?
-foreach($list as $k => $v) {
-    echo $k." - ".$v;
+if(empty($list2)) {
+    echo "<tr><td colspan=\"4\">No Data</td></tr>";
+}
+foreach($list1 as $k => $v) {
+    echo "<tr><td>".$v['id']."</td><td>".$v['comments']."</td><td>".$v['photo']."</td><td>".$v['regdate']."</td></tr>";
 }
 ?>
+</table>
+<p>
+리스트2
+<table border="1">
+<?
+if(empty($list2)) {
+    echo "<tr><td colspan=\"4\">No Data</td></tr>";
+}
+foreach($list2 as $k => $v) {
+    echo "<tr><td>".$v['id']."</td><td>".$v['comments']."</td><td>".$v['photo']."</td><td>".$v['regdate']."</td></tr>";
+}
+?>
+</table>
+<p>
+1개
+<table border="1">
+    <tr>
+        <td><?=$one['id']?></td>
+        <td><?=$one['comments']?></td>
+        <td><?=$one['photo']?></td>
+        <td><?=$one['regdate']?></td>
+    </tr>
+</table>
+<p>
+이미지업로드
 <form>
     <input type="hidden" name="upimg1_tmp" id="upimg1_tmp" value="">
     <input id="upimg1" type="file" multiple="true">

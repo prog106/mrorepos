@@ -2,18 +2,28 @@
 class WelcomeDao extends CI_Model {
     public function __construct() {
         parent::__construct();
-        //$db1 = $this->load->database('inkomaro', TRUE);
         $this->db1 = $this->load->database('prog106', TRUE);
         $this->db2 = $this->load->database('inkomaro', TRUE);
     }
     public function getList1() {
-        $sql = "SELECT * FROM baba";
-        $return1 = $this->db1->query($sql);
-        return $return1->result_array();
+        $sql = "SELECT * FROM baba WHERE view_flag='Y'";
+        $res = $this->db1->query($sql);
+        if($res->num_rows() > 0)
+            return $res->result_array();
+        else
+            return array();
     }
     public function getList2() {
         $sql = "SELECT * FROM test";
-        $return1 = $this->db2->query($sql);
-        return $return1->result_array();
+        $res = $this->db2->query($sql);
+        if($res->num_rows() > 0)
+            return $res->result_array();
+        else
+            return array();
+    }
+    public function getOne($srl) {
+        $sql = "SELECT * FROM baba WHERE id = ? LIMIT 1";
+        $res = $this->db1->query($sql, array($srl));
+        return $res->row_array();
     }
 }
