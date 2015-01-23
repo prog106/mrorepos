@@ -24,12 +24,17 @@ class Welcome extends CI_Controller {
     }
     public function index()
     {
-        
         //debug($this->model->getList1());
         //debug($this->model->getList2());
-        debug(date('Y-m-d H:i:s'));
-        $this->load->view('welcome/message');
-        $this->load->view('welcome/uploads');
+        //debug(date('Y-m-d H:i:s'));
+        $data['ec'] = date('Y-m-d H:i:s');
+        $data['list'] = array('1' => 'a', '2' => 'b');
+
+        //$data['page'] = 'welcome/uploads';
+        $this->load->view('common/body',$data);
+        //$this->load->view('common/head');
+        //$this->load->view('welcome/message');
+        //$this->load->view('welcome/uploads');
     }
 }
 
