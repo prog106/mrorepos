@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
         $data['one'] = $this->model->getOne(14);
         $data['ec'] = date('Y-m-d H:i:s');
 
-        $data['page'] = 'welcome/uploads'; // template
+        $data['views'] = 'welcome/uploads'; // template
         $this->load->view('common/body',$data);
     }
 }
