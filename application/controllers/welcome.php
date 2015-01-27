@@ -11,7 +11,7 @@ class Welcome extends CI_Controller {
         $this->load->model('Biz/welcomeBiz', 'model');
         $this->load->helper(array('form', 'url'));
     }
-    public function index() {
+    public function _index() {
         $data['list1'] = $this->model->getList1();
         $data['list2'] = $this->model->getList2();
         $data['one'] = $this->model->getOne(14);
@@ -19,5 +19,13 @@ class Welcome extends CI_Controller {
 
         $data['views'] = 'welcome/uploads'; // template
         $this->load->view('common/body',$data);
+    }
+    public function index() {
+        if(empty($this->input->is_ajax_request())) {
+            echo Errcode::axcode('999');
+            die;
+        }
+        $return['OK'] = '성공';
+        echo json_encode($return);
     }
 }
