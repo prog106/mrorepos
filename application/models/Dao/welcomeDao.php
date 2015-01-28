@@ -39,7 +39,7 @@ class WelcomeDao extends CI_Model {
         $sql_prm['regdate'] = date('Y-m-d H:i:s');
         $sql_prm['view_flag'] = 'Y';
         $this->db1->insert('baba', $sql_prm);
-        return (empty($this->db1->affected_rows())) ? 'F' : 'S';
+        return $this->db1->affected_rows();
     }
 
     public function updateTrans() {

@@ -64,11 +64,11 @@ $(function() {
                 'swf':'/static/js/uploadify.swf',
                 'uploader':'/index.php/uploads/doimage',
                 'onUploadSuccess':function(obj,data) {
-                    var r = $.parseJSON(data);
-                    if(r.ret = 'OK') {
-                        PreviewtmpImage(mid,r.msg);
+                    var v=$.parseJSON(data);
+                    if(v.ret = 'OK') {
+                        PreviewtmpImage(mid,v.msg);
                     } else {
-                        alert(r.msg);
+                        alert(v.msg);
                     }
                 },
             });
@@ -95,10 +95,10 @@ $(function() {
                 var v=$.parseJSON(d);
                 console.log(v);
                 if(v.ret == 'OK') {
-                    alert('정상 등록');
+                    alert(v.msg);
                     self.location.reload();
                 } else {
-                    alert('등록 실패');
+                    alert(v.msg);
                 }
             },
             error:function(d) {
