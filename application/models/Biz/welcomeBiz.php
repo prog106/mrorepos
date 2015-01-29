@@ -65,4 +65,52 @@ class WelcomeBiz extends CI_Model {
             return $return;
         }
     }
+
+    public function getLogin($prm=array()) {
+        $chkey = array('userid', 'userpassword');
+        $sql_prm = array();
+        foreach($chkey as $k => $v) {
+            if(empty($prm[$v])) {
+                return Errcode::code('E201');
+            } else {
+                if($v == 'userpassword') {
+                    $sql_prm[$v] = md5($prm[$v]);
+                } else {
+                    $sql_prm[$v] = $prm[$v];
+                }
+            }
+        }
+        $res = $this->welcome->getLogin($sql_prm);
+        if(empty($res)) {
+            return Errcode::code('E900');
+        } else {
+            $return['ret'] = 'OK';
+            $return['msg'] = $res;
+            return $return;
+        }
+    }
+
+    public function saveLogin($prm=array()) {
+        $chkey = array('userid', 'userpassword');
+        $sql_prm = array();
+        foreach($chkey as $k => $v) {
+            if(empty($prm[$v])) {
+                return Errcode::code('E201');
+            } else {
+                if($v == 'userpassword') {
+                    $sql_prm[$v] = md5($prm[$v]);
+                } else {
+                    $sql_prm[$v] = $prm[$v];
+                }
+            }
+        }
+        $res = $this->welcome->saveLogin($sql_prm);
+        if(empty($res)) {
+            return Errcode::code('E910');
+        } else {
+            $return['ret'] = 'OK';
+            $return['msg'] = $res;
+            return $return;
+        }
+    }
 }

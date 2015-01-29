@@ -42,6 +42,21 @@ class WelcomeDao extends CI_Model {
         return $this->db1->affected_rows();
     }
 
+    public function getLogin($sql_prm) {
+        $sql = "SELECT srl, userid FROM users WHERE userid = ? AND userpassword = ? LIMIT 1";
+        $res = $this->db1->query($sql, $sql_prm);
+        if($res->num_rows() == 1) {
+            return $res->row_array();
+        } else {
+            return array();
+        }
+    }
+
+    public function saveLogin($sql_prm) {
+        $this->db1->insert('users', $sql_prm);
+        return $this->db1->affected_rows();
+    }
+
     public function updateTrans() {
         $this->db1->trans_begin();
 
