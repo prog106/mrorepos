@@ -1,7 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 class Uploads extends CI_Controller {
-
+    /**
+     * @ description : image upload class
+     * @ author : Sookwon Lee <prog106@inkomaro.com>
+     */
     public function __construct() {
         parent::__construct();
         $this->upload_root = $_SERVER['DOCUMENT_ROOT'];
@@ -14,9 +16,12 @@ class Uploads extends CI_Controller {
         $imgconfig['encrypt_name'] = TRUE;
         $this->load->library('upload', $imgconfig);
     }
+
     public function index() {
-        echo 1;
+        echo "image upload index page";
     }
+
+    // image upload & save
     public function doimage() {
         if(empty($_POST['timestamp']) || $_POST['token'] != md5('verified'.$_POST['timestamp'])) {
             $return = array('ret' => 'Invalid', 'msg' => 'Retry please!');
@@ -33,6 +38,3 @@ class Uploads extends CI_Controller {
         echo json_encode($return);
     }
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Welcome extends CI_Controller {
     /**
-     * description : INCOMARO Sample Controller.
-     * author : Sookwon Lee <prog106@inkomaro.com>
+     * @ description : INCOMARO Sample Controller.
+     * @ author : Sookwon Lee <prog106@inkomaro.com>
      */
     public function __construct() {
         parent::__construct();
@@ -11,6 +11,7 @@ class Welcome extends CI_Controller {
     }
 
     public function index() {
+        debug($_SERVER);
         // 리스트1
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));
         $prm['view_flag'] = 'Y';
