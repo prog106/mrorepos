@@ -11,7 +11,6 @@ class Welcome extends CI_Controller {
     }
 
     public function index() {
-        debug($_SERVER);
         // 리스트1
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));
         $prm['view_flag'] = 'Y';
