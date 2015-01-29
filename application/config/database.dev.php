@@ -45,7 +45,7 @@
 | the active record class
 */
 
-$active_group = 'prog106';
+$active_group = 'inkocore';
 $active_record = TRUE;
 
 if(ENVIRONMENT == 'release') {
@@ -54,21 +54,21 @@ if(ENVIRONMENT == 'release') {
     $db_debug = TRUE;
 }
 
-$db['prog106']['hostname'] = '127.0.0.1';
-$db['prog106']['username'] = 'prog106';
-$db['prog106']['password'] = 'inko1234';
-$db['prog106']['database'] = 'prog106DB';
-$db['prog106']['dbdriver'] = 'mysql';
-$db['prog106']['dbprefix'] = '';
-$db['prog106']['pconnect'] = TRUE;
-$db['prog106']['db_debug'] = $db_debug;
-$db['prog106']['cache_on'] = FALSE;
-$db['prog106']['cachedir'] = '';
-$db['prog106']['char_set'] = 'utf8';
-$db['prog106']['dbcollat'] = 'utf8_general_ci';
-$db['prog106']['swap_pre'] = '';
-$db['prog106']['autoinit'] = TRUE;
-$db['prog106']['stricton'] = FALSE;
+$db['inkocore']['hostname'] = '127.0.0.1';
+$db['inkocore']['username'] = 'prog106';
+$db['inkocore']['password'] = 'inko1234';
+$db['inkocore']['database'] = 'prog106DB';
+$db['inkocore']['dbdriver'] = 'mysql';
+$db['inkocore']['dbprefix'] = '';
+$db['inkocore']['pconnect'] = TRUE;
+$db['inkocore']['db_debug'] = $db_debug;
+$db['inkocore']['cache_on'] = FALSE;
+$db['inkocore']['cachedir'] = '';
+$db['inkocore']['char_set'] = 'utf8';
+$db['inkocore']['dbcollat'] = 'utf8_general_ci';
+$db['inkocore']['swap_pre'] = '';
+$db['inkocore']['autoinit'] = TRUE;
+$db['inkocore']['stricton'] = FALSE;
 
 $db['inkomaro']['hostname'] = '127.0.0.1';
 $db['inkomaro']['username'] = 'inkomaro';

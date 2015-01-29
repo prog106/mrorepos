@@ -6,7 +6,7 @@
 class WelcomeDao extends CI_Model {
     public function __construct() {
         parent::__construct();
-        $this->db1 = $this->load->database('prog106', TRUE);
+        $this->db1 = $this->load->database('inkocore', TRUE);
         $this->db2 = $this->load->database('inkomaro', TRUE);
     }
 
