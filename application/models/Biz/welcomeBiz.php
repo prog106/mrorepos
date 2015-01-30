@@ -14,7 +14,7 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return Errcode::code('E201');
+                return sc('E201');
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
@@ -29,7 +29,7 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return Errcode::code('E201');
+                return sc('E201');
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
@@ -51,14 +51,14 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return Errcode::code('E201');
+                return sc('E201');
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
         }
         $res = $this->welcome->saveInfo($sql_prm);
         if(empty($res)) {
-            return Errcode::code('E100');
+            return sc('E100');
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;
@@ -71,7 +71,7 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return Errcode::code('E201');
+                return sc('E201');
             } else {
                 if($v == 'userpassword') {
                     $sql_prm[$v] = md5($prm[$v]);
@@ -82,7 +82,7 @@ class WelcomeBiz extends CI_Model {
         }
         $res = $this->welcome->getLogin($sql_prm);
         if(empty($res)) {
-            return Errcode::code('E900');
+            return sc('E900');
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;
@@ -95,7 +95,7 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return Errcode::code('E201');
+                return sc('E201');
             } else {
                 if($v == 'userpassword') {
                     $sql_prm[$v] = md5($prm[$v]);
@@ -106,7 +106,7 @@ class WelcomeBiz extends CI_Model {
         }
         $res = $this->welcome->saveLogin($sql_prm);
         if(empty($res)) {
-            return Errcode::code('E910');
+            return sc('E910');
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;

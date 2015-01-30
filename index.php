@@ -53,11 +53,47 @@ if (defined('ENVIRONMENT'))
 	}
 }
 
-// jakarta timezone setting
-if(!ini_get('date.timezone')) {
-    date_default_timezone_set('Asia/Jakarta');
-    //date_default_timezone_set('Asia/Seoul');
+/*
+ *---------------------------------------------------------------
+ * TIMEZONE & LANGUAGE
+ *---------------------------------------------------------------
+ *
+ * Default Setting : Asia/Jakarta & English
+ */
+
+// $_SERVER values check
+switch($_SERVER['HTTP_HOST']) {
+    case 'localhost':
+        $loset = array(
+            'timezone' => 'Asia/Jakarta',
+            'language' => 'english'
+        );
+    break;
+    case 'inkomaro.com':
+        $loset = array(
+            'timezone' => 'Asia/Seoul',
+            'language' => 'korea',
+        );
+    break;
+    case 'mro.co.id':
+        $loset = array(
+            'timezone' => 'Asia/Jakarta',
+            'language' => 'indonesia',
+        );
+    break;
+    default:
+        $loset = array(
+            'timezone' => 'Asia/Jakarta',
+            'language' => 'english'
+        );
+    break;
 }
+
+if(!ini_get('date.timezone')) {
+    date_default_timezone_set($loset['timezone']);
+}
+
+define('LANGS', $loset['language']);
 
 /*
  *---------------------------------------------------------------

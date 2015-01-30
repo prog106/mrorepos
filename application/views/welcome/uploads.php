@@ -129,20 +129,20 @@ $(function() {
                 alert(v.msg);
             },
             error:function(d) {
-                alert('처리중 오류가 발생하였습니다. 다시 시도해 주세요');
+                alert('<?=sc('E998','msg')?>');
             }
         });
         return false;
     });
     $("#login_act").click(function() {
         if(!prmchk($('#login_id').val())) {
-            alert('id please 0~9, a~z, >=4');
+            alert('<?=sc('T110','msg')?>');
             $('#login_id').focus();
             return false;
         }
 
         if(!prmchk($('#login_pw').val())) {
-            alert('password please 0~9, a~z, >=4');
+            alert('<?=sc('T120','msg')?>');
             $('#login_pw').focus();
             return false;
         }
@@ -178,7 +178,7 @@ $(function() {
                 }
             },
             error:function(d) {
-                alert('처리중 오류가 발생하였습니다. 다시 시도해 주세요');
+                alert('<?=sc('E998','msg')?>');
             }
         });
         return false;

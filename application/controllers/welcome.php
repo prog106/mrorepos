@@ -6,12 +6,19 @@ class Welcome extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
+        // status detail information
+        // if(ENVIRONMENT !== 'release') $this->output->enable_profiler(true);
+
         $this->load->model('Biz/welcomeBiz', 'model');
         $this->load->helper(array('form', 'url'));
+        $this->output->enable_profiler(true);
     }
 
+    // 각종 샘플 모음
     public function index() {
         // 리스트1
+        //debug(sc('S100'));
+        //debug(sc('S100','msg'));
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));
         $prm['view_flag'] = 'Y';
         $res = $this->model->getList1($prm);
@@ -40,9 +47,10 @@ class Welcome extends CI_Controller {
         $this->load->view('common/body',$data);
     }
 
+    // 회원가입
     public function exsignin() {
         if(empty($this->input->is_ajax_request())) {
-            exit(json_encode(Errcode::code('X000')));
+            exit(json_encode(sc('E000')));
         }
 
         $prm['userid'] = $this->input->post('signin_id', true);
@@ -52,18 +60,20 @@ class Welcome extends CI_Controller {
         if($res['ret'] != 'OK') {
             exit(json_encode($res));
         }
-        $return = array('ret' => 'OK', 'msg' => '회원가입 완료');
+        $return = array('ret' => 'OK', 'msg' => sc('S900','msg'));
         echo json_encode($return);
     }
 
+    // login
     public function login() {
         $prm['userid'] = $this->input->post('login_id', true);
         $prm['userpassword'] = $this->input->post('login_pw', true);
         $returl = $this->input->post('returl', true);
+        $returl = (empty($returl)) ? '/' : $returl;
 
         $res = $this->model->getLogin($prm);
         if($res['ret'] != 'OK') {
-            util::alertmsg(Errcode::code('E900'));
+            alertmsg(sc('E900'));
             redirect($returl, 'refresh');
         }
         $info = $res['msg'];
@@ -78,11 +88,12 @@ class Welcome extends CI_Controller {
         );
         $res = setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
         if(empty($res)) {
-            util::alertmsg(Errcode::code('E930'));
+            alertmsg(sc('E930'));
         }
         redirect($returl, 'refresh');
     }
 
+    // logout
     public function logout() {
         $returl = $this->input->post('returl', true);
 
@@ -94,14 +105,15 @@ class Welcome extends CI_Controller {
         );
         setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
         if(empty($this->input->cookie('mro', true))) {
-            util::alertmsg(Errcode::code('E920'));
+            alertmsg(sc('E920'));
         }
         redirect($returl, 'refresh');
     }
 
+    // 신규 등록
     public function exadd() {
         if(empty($this->input->is_ajax_request())) {
-            exit(json_encode(Errcode::code('X000')));
+            exit(json_encode(sc('E000')));
         }
 
         $prm['comments'] = $this->input->post('comments', true);
@@ -112,8 +124,7 @@ class Welcome extends CI_Controller {
             exit(json_encode($res));
         }
 
-        $return['ret'] = 'OK';
-        $return['msg'] = 'success';
+        $return = array('ret' => 'OK', 'msg' => sc('S100','msg'));
         echo json_encode($return);
     }
 }

@@ -52,7 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-$autoload['libraries'] = array('errcode', 'util', 'encrypt');
+$autoload['libraries'] = array('encrypt');
 
 
 /*
@@ -64,7 +64,7 @@ $autoload['libraries'] = array('errcode', 'util', 'encrypt');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array();
+$autoload['helper'] = array('INKO_sc');
 
 
 /*
