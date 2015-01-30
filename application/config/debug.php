@@ -1,4 +1,8 @@
-<?
+<?php
+/**
+ * @ description : debug util
+ * @ author : Sookwon Lee <prog106@inkomaro.com>
+ */
 if(!function_exists('debug_log')) {
     function debug_log($var="no data")
     {
