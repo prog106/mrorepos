@@ -6,19 +6,17 @@ class Welcome extends CI_Controller {
      */
     public function __construct() {
         parent::__construct();
-        // status detail information
-        // if(ENVIRONMENT !== 'release') $this->output->enable_profiler(true);
 
         $this->load->model('Biz/welcomeBiz', 'model');
         $this->load->helper(array('form', 'url'));
-        $this->output->enable_profiler(true);
     }
 
     // 각종 샘플 모음
     public function index() {
+        // status detail information
+        if(ENVIRONMENT === 'development') $this->output->enable_profiler(true);
+
         // 리스트1
-        //debug(sc('S100'));
-        //debug(sc('S100','msg'));
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));
         $prm['view_flag'] = 'Y';
         $res = $this->model->getList1($prm);
@@ -41,6 +39,7 @@ class Welcome extends CI_Controller {
         }
         $data['one'] = $res['msg'];
 
+        // 현재시간
         $data['ec'] = date('Y-m-d H:i:s');
 
         $data['tmp'] = 'welcome/uploads'; // template
@@ -69,12 +68,11 @@ class Welcome extends CI_Controller {
         $prm['userid'] = $this->input->post('login_id', true);
         $prm['userpassword'] = $this->input->post('login_pw', true);
         $returl = $this->input->post('returl', true);
-        $returl = (empty($returl)) ? '/' : $returl;
 
         $res = $this->model->getLogin($prm);
         if($res['ret'] != 'OK') {
             alertmsg(sc('E900'));
-            redirect($returl, 'refresh');
+            redirect((empty($returl)?'/':$returl), 'refresh');
         }
         $info = $res['msg'];
 
@@ -90,7 +88,7 @@ class Welcome extends CI_Controller {
         if(empty($res)) {
             alertmsg(sc('E930'));
         }
-        redirect($returl, 'refresh');
+        redirect((empty($returl)?'/':$returl), 'refresh');
     }
 
     // logout
@@ -107,7 +105,7 @@ class Welcome extends CI_Controller {
         if(empty($this->input->cookie('mro', true))) {
             alertmsg(sc('E920'));
         }
-        redirect($returl, 'refresh');
+        redirect((empty($returl)?'/':$returl), 'refresh');
     }
 
     // 신규 등록
