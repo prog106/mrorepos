@@ -193,7 +193,7 @@ function PreviewtmpImage(mid,msg) {
     }
 }
 function DeletetmpImage(mid,msg) {
-    if(confirm('Realy?')) {
+    if(confirm('<?=sc('C900','msg')?>')) {
         $('#'+mid+'_tmp').val('');
         $('#tmpPreview_'+mid).html('').hide();
     }

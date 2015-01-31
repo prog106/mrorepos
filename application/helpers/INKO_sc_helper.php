@@ -41,6 +41,7 @@ if ( ! function_exists('sc'))
             'V000' => 'Welcome MRO',
             'T110' => 'Login ID Check Please! (number, a to z, 4~20byte)',
             'T120' => 'Login Password Check Please! (number, a to z, 4~20byte)',
+            'C900' => 'Do you want Delete, Realy?',
             'S100' => '정상적으로 등록되었습니다.',
             'S900' => '회원가입이 완료 되었습니다.',
             'E000' => '정상적인 접근이 아닙니다.',

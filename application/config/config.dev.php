@@ -304,8 +304,8 @@ $config['global_xss_filtering'] = FALSE;
 | 'csrf_expire' = The number in seconds the token should expire.
 */
 $config['csrf_protection'] = FALSE;
-$config['csrf_token_name'] = 'INKOTOKEN';
-$config['csrf_cookie_name'] = 'INKOCOOK';
+$config['csrf_token_name'] = 'mro_t';
+$config['csrf_cookie_name'] = 'mro_c';
 $config['csrf_expire'] = 7200; // 60 * 60 * 2
 
 /*
