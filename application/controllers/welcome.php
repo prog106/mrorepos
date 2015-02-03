@@ -11,10 +11,50 @@ class Welcome extends CI_Controller {
         $this->load->helper(array('form', 'url'));
     }
 
+    // xmlrpc server
+    public function serv() {
+        $this->load->library('xmlrpc');
+        $this->load->library('xmlrpcs');
+
+        $config['functions']['testserv'] = array('function' => 'Welcome.testserv');
+        $config['object'] = $this;
+
+        $this->xmlrpcs->initialize($config);
+        $this->xmlrpcs->serve();
+    }
+
+    // xmlrpc server method
+    public function testserv($request) {
+        $prm = $request->output_parameters();
+        $response = array(
+            array(
+                'ret' => 'S000',
+                'msg' => $prm[0].$prm[1].' : No Message. Return Code Check, Please!',
+            ),
+        'struct');
+        return $this->xmlrpc->send_response($response);
+    }
+
     // 각종 샘플 모음
     public function index() {
         // status detail information
         if(ENVIRONMENT === 'development') $this->output->enable_profiler(true);
+
+        // xmlrpc test
+        $this->load->library('xmlrpc');
+
+        $xmlurl = site_url('welcome/serv');
+        $this->xmlrpc->server($xmlurl, 80);
+        $this->xmlrpc->method('testserv');
+
+        $request = array('parameter 1', 'parameter 2');
+        $this->xmlrpc->request($request);
+
+        if(!$this->xmlrpc->send_request()) {
+            $data['rpcret'] = $this->xmlrpc->display_error();
+        } else {
+            $data['rpcret'] = $this->xmlrpc->display_response();
+        }
 
         // 리스트1
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));

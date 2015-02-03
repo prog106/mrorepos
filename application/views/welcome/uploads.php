@@ -1,4 +1,9 @@
 <h1>Demo [ <?=$ec?> ]</h1>
+xmlrpc test result
+<?
+debug($rpcret);
+?>
+<br>
 <?
 if(empty($logininfo)) {
 ?>
