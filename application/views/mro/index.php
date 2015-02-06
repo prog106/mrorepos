@@ -1,14 +1,16 @@
+<? $this->load->view('mro/topmenu'); ?>
 <div class="container-fluid">
     <div class="row">
-        <? $this->load->view('mro/menu.php'); ?>
+    <? $this->load->view('mro/menu.php'); ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h3 class="page-header">Welcome INCOMARO</h3>
             <div class="row" style="margin-top:20px;">
                 <div class="col-sm-6">
                     <h3>List</h3>
                     <ul class="list-group">
                         <li class="list-group-item">
                             <span class="badge">14</span>
-                            Cras justo odio
+                            <a href="#">Cras justo odio</a>
                         </li>
                         <li class="list-group-item">
                             <span class="badge">14</span>
@@ -34,7 +36,7 @@
                 </div>
                 <div class="col-sm-6">
                     <h3>Chart</h3>
-                    <div id="placeholderRT" class="demo-placeholder" style="height:300px;"></div>
+                    <img src="/static/img/pie.png">
                 </div>
             </div>
 

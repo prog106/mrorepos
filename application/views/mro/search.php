@@ -1,8 +1,10 @@
+<? $this->load->view('mro/topmenu'); ?>
 <div class="container-fluid">
     <div class="row">
-        <? $this->load->view('mro/menu.php'); ?>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top:30px;">
-            <h5><span style="color:#1e1e1e">Search Keyword : </span><span style="color:#353535">Bearing</strong></h5>
+    <? $this->load->view('mro/menu'); ?>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h3 class="page-header">Search Result</h3>
+            <span style="color:#1e1e1e">Search Keyword : </span><span style="color:#353535">Bearing</strong></h5>
             <div class="table-responsive">
                 <table class="table">
                     <thead>

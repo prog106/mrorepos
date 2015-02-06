@@ -89,31 +89,31 @@ class Welcome extends CI_Controller {
     // mro test 시나리오 - main
     public function mro() {
         $data['tmp'] = 'mro/index';
-        $this->load->view('common/body',$data);
+        $this->load->view('mro/body',$data);
     }
 
     // mro test 시나리오 - search
     public function search() {
         $data['tmp'] = 'mro/search';
-        $this->load->view('common/body',$data);
+        $this->load->view('mro/body',$data);
     }
 
     // mro test 시나리오 - order
     public function order() {
         $data['tmp'] = 'mro/order';
-        $this->load->view('common/body',$data);
+        $this->load->view('mro/body',$data);
     }
 
     // mro test 시나리오 - orderlist
     public function orderlist() {
         $data['tmp'] = 'mro/orderlist';
-        $this->load->view('common/body',$data);
+        $this->load->view('mro/body',$data);
     }
 
     // mro test 시나리오 - cart 
     public function cart() {
         $data['tmp'] = 'mro/cart';
-        $this->load->view('common/body',$data);
+        $this->load->view('mro/body',$data);
     }
 
     // 회원가입

@@ -1,0 +1,240 @@
+body { padding-top: 50px; }
+.sub-header { padding-bottom: 10px;border-bottom: 1px solid #eee; }
+
+.navbar-fixed-top {
+  border: 0;
+}
+
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 1100;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #282828;
+    border-right: 0px solid #eee;
+  }
+}
+.navbar-inverse { background-color:#282828; }
+.nav-sidebar {
+  margin-right: -21px;
+  margin-bottom: 20px;
+  margin-left: -20px;
+}
+
+.nav-sidebar > a {
+  color: #fff;
+}
+
+.nav-sidebar > li > a {
+  color: #fff;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.nav-sidebar > li > a:hover,
+.nav-sidebar > li > a:focus {
+  background-color: #353535;
+}
+
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #1e1e1e;
+}
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+
+
+/*
+ * Placeholder dashboard ideas
+ */
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+/*
+.wrap { }
+.top { height:50px;background-color:#282828;margin-left:200px; }
+.top-menu > li > a:hover,
+.top-menu > li > a:focus { background:#353535; }
+.top-menu > li > a { color:#fff; }
+.left { width:200px;background-color:#282828;position:fixed;top:0;left:0;bottom:0;display:block;overflow-x:hidden;overflow-y:auto; }
+.left-top { text-align:center;padding:20px 10px; }
+.left-top > .left-logo { width:150px;margin-bottom:20px; }
+.left-top > .left-pic { width:120px;margin-bottom:10px; }
+.left-menu { width:200px;background-color:#282828; }
+.left-menu > li > a:hover,
+.left-menu > li > a:focus { background-color:#353535; }
+.left-menu > li > a { color:#fff;padding-right:20px;padding-left:20px; }
+.left-menu > .active > a,
+.left-menu > .active > a:hover,
+.left-menu > .active > a:focus { color:#fff;background-color:#1e1e1e; }
+.left-menu > a { color:#fff; }
+*/
+
+/*.sub-header {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+ * Top navigation
+ * Hide default border to remove 1px line.
+.navbar-fixed-top {
+  border: 0;
+}
+
+ */
+/*
+ * Sidebar
+ */
+
+/* Hide for mobile, show later */
+/*
+.sidebar {
+  display: none;
+}
+@media (min-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    padding: 20px;
+    overflow-x: hidden;
+    background-color: #282828;
+    border-right: 1px solid #eee;
+  }
+}
+
+.nav-sidebar {
+    margin-bottom: 20px;
+    margin-left: -20px;
+    font-size:18px;
+}
+.nav-sidebar > li > a:hover, 
+.nav-sidebar > li > a:focus {
+    background-color:#353535;
+}
+.nav-sidebar > li > a {
+    color:#fff;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+.nav-sidebar > .active > a,
+.nav-sidebar > .active > a:hover,
+.nav-sidebar > .active > a:focus {
+  color: #fff;
+  background-color: #1e1e1e;
+}
+
+.nav-sidebar > a {
+    color: #fff;
+}
+
+.topbar {
+    background-color:#f5f5f5;
+    z-index:999;
+}
+
+.sidebarimg {
+    margin:0 0 20px 0;
+    width:140px;
+}
+ * Main content
+
+.main {
+  padding: 20px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+.main .page-header {
+  margin-top: 50px;
+}
+
+
+ * Placeholder dashboard ideas
+
+.placeholders {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.placeholders h4 {
+  margin-bottom: 0;
+}
+.placeholder {
+  margin-bottom: 20px;
+}
+.placeholder img {
+  display: inline-block;
+  border-radius: 50%;
+}
+
+.demo-container {
+    box-sizing: border-box;
+    width: 100%;
+    height: 450px;
+    padding: 20px 15px 15px 15px;
+    margin: 15px auto 30px auto;
+    border: 1px solid #ddd;
+    background: #fff;
+    background: linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -o-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -ms-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -moz-linear-gradient(#f6f6f6 0, #fff 50px);
+    background: -webkit-linear-gradient(#f6f6f6 0, #fff 50px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    -o-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    -webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.demo-placeholder {
+    width: 100%;
+    height: 100%;
+    font-size: 14px;
+    line-height: 1.2em;
+}
+
+.legend table {
+    border-spacing: 5px;
+}
+*/

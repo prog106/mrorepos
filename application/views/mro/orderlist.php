@@ -1,8 +1,9 @@
+<? $this->load->view('mro/topmenu'); ?>
 <div class="container-fluid">
     <div class="row">
-        <? $this->load->view('mro/menu.php'); ?>
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="margin-top:30px;">
-            <h3>Order List</h3>
+    <? $this->load->view('mro/menu'); ?>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h3 class="page-header">Order List</h3>
             <div class="table-responsive">
                 <table class="table">
                     <thead>
