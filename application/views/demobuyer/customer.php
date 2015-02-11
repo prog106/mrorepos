@@ -1,42 +1,34 @@
-<? $this->load->view('mro/topmenu'); ?>
+<? $this->load->view('demobuyer/topmenu'); ?>
 <div class="container-fluid">
     <div class="row">
-    <? $this->load->view('mro/menu.php'); ?>
+    <? $this->load->view('demobuyer/menu.php'); ?>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-            <h3 class="page-header">Welcome INCOMARO</h3>
-            <div class="row" style="margin-top:20px;">
+            <div class="row">
                 <div class="col-sm-6">
-                    <h3>List</h3>
+                    <h3>Trade Information</h3>
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <span class="badge">14</span>
-                            <a href="#">Cras justo odio</a>
+                            <span class="badge">5</span>
+                            <a href="#">In Cart</a>
                         </li>
                         <li class="list-group-item">
                             <span class="badge">14</span>
-                            Cras justo odio
+                            <a href="#">Purchasing Order</a>
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">14</span>
-                            Cras justo odio
+                            <span class="badge">9</span>
+                            <a href="#">In Progress Approval</a>
                         </li>
                         <li class="list-group-item">
-                            <span class="badge">14</span>
-                            Cras justo odio
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">14</span>
-                            Cras justo odio
-                        </li>
-                        <li class="list-group-item">
-                            <span class="badge">14</span>
-                            Cras justo odio
+                            <span class="badge">2</span>
+                            <a href="#">Payment Account</a>
                         </li>
                     </ul>
                 </div>
                 <div class="col-sm-6">
-                    <h3>Chart</h3>
-                    <img src="/static/img/pie.png">
+                    <h3>Current Chart</h3>
+                    <img src="/static/img/pie.png" height="200">
+                    <img src="/static/img/pie.png" height="200">
                 </div>
             </div>
 
