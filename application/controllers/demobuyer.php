@@ -48,7 +48,8 @@ class Demobuyer extends CI_Controller {
                 array(
                     array('/static/img/ballbearing.png', 'B112345', 'Ball bearing', '1mm', 'PT Inkomaro', 'EA', '130000', '20', 130000*20, 'Complete', '2015-01-11', '2015-01-10'),
                     array('/static/img/jointbearing.png', 'B354323', 'Joint bearing', '1mm', 'PT Inkomaro', 'EA', '140000', '10', 140000*10, 'Complete', '2015-01-11', '2015-01-10'),
-                    array('/static/img/slewingbearing.png', 'B539732', 'Slewing bearing', '1mm', 'PT Inkomaro', 'EA', '120000', '50', 120000*50, 'Complete', '2015-01-11', '2015-01-10'),
+                    array('/static/img/slewingbearing.png', 'B539732', 'Slewing bearing', '1mm', 'PT Inkomaro', 'EA', '120000', '45', 120000*50, 'Complete', '2015-01-11', '2015-01-10'),
+                    array('/static/img/slewingbearing.png', 'B539732', 'Slewing bearing', '1mm', 'PT Inkomaro', 'EA', '120000', '5', 120000*50, 'Ready', '', '2015-01-10'),
                 ), '515, sealul Bldg, 18 Teheran-ro33-gil, Gangnam-gu, Seoul, Korea', 'admin@inkomaro.com', '10000000'
             ),
         );

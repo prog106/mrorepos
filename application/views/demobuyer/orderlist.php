@@ -58,7 +58,15 @@ foreach($orderlist as $k => $v) {
                                     <td><?=$vv[4]?></td>
                                     <td><?=$vv[5]?></td>
                                     <td>RP. <?=number_format($vv[6])?></td>
-                                    <td><?=$vv[7]?></td>
+                                    <td><?=$vv[7]?>
+<?
+        if($vv[9] == 'Ready') {
+?>
+<br><input type="text" size="2" maxlength="2" id="comp<?=$kk?>" value="0">
+<br><button type="button" class="btn btn-primary btn-sm complete" id="complete<?=$k?>" data-group='{"comp":"comp<?=$kk?>"}'>Complete</button>
+<?
+        }
+?></td>
                                     <td>RP. <?=number_format($vv[8])?></td>
                                 </tr>
 <?
@@ -76,3 +84,19 @@ foreach($orderlist as $k => $v) {
         </div>
     </div>
 </div>
+<script>
+$(function() {
+    $(".complete").each(function() {
+        $(this).click(function() {
+            if($("#"+$(this).data('group').comp).val() == 0) {
+                alert('Check Delivery Conut');
+                return false;
+            }
+            if(confirm('Complete?')) {
+                alert('Complete');
+            }
+            return false;
+        });
+    });
+});
+</script>
