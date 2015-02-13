@@ -133,6 +133,20 @@ class Welcome extends CI_Controller {
         echo json_encode($return);
     }
 
+    // language cookie
+    public function languages() {
+        $langs = $this->input->post('langs', true);
+        $cookie_array = array(
+            'name' => 'languages',
+            'value' => $langs,
+            'expire' => time() + (60*60*24*265*100),
+            'path' => '/',
+        );
+        setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
+        $return = array('ret' => 'OK', 'msg' => sc('S900','msg'));
+        echo json_encode($return);
+    }
+
     // login
     public function login() {
         $prm['userid'] = $this->input->post('login_id', true);

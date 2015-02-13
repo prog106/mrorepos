@@ -1,4 +1,6 @@
-<h1>Demo [ <?=$ec?> ]</h1>
+<a href="javascript:;" onclick="langs('korea');">한글</a> | <a href="javascript:;" onclick="langs('english');">English</a>
+<?=sc('S000', 'msg')?>
+<h1><?=lang('Demo')?> [ <?=$ec?> ]</h1>
 xmlrpc test result
 <?
 debug($rpcret);
@@ -7,19 +9,19 @@ debug($rpcret);
 <?
 if(empty($logininfo)) {
 ?>
-회원가입
+<?=lang('signin')?>
 <form id="signin_form" name="signin_form" method="post" enctype="multipart/form-data">
-id : <input type="text" id="signin_id" name="signin_id" maxlength="20"> 20자 이내<br>
-pass : <input type="password" id="signin_pw" name="signin_pw" maxlength="20"> 20자 이내<br>
-<input type="submit" value="signin">
+<?=lang('id')?> : <input type="text" id="signin_id" name="signin_id" maxlength="20"> 20자 이내<br>
+<?=lang('password')?> : <input type="password" id="signin_pw" name="signin_pw" maxlength="20"> 20자 이내<br>
+<button type="button" id="signin"><?=lang('signin')?></button>
 </form>
 <br>
-로그인
+<?=lang('login')?>
 <form id="login_form" name="login_form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="returl" value="<? echo $_SERVER['REQUEST_URI']; ?>">
-id : <input type="text" id="login_id" name="login_id" maxlength="20"> 20자 이내<br>
-pass : <input type="password" id="login_pw" name="login_pw" maxlength="20"> 20자 이내<br>
-<input type="submit" id="login_act" value="login">
+<?=lang('id')?> : <input type="text" id="login_id" name="login_id" maxlength="20"> 20자 이내<br>
+<?=lang('password')?> : <input type="password" id="login_pw" name="login_pw" maxlength="20"> 20자 이내<br>
+<button type="button" id="login_act"><?=lang('login')?></button>
 </form>
 <? } else { ?>
 <? echo $logininfo; ?><br>
@@ -75,6 +77,21 @@ foreach($list2 as $k => $v) {
 function prmchk(str) {
     return ((str.match(/[^(0-9a-z)]/)) ? false : true) ? ((str.length < 4 || str.length > 20) ? false : true) : false ;
 }
+function langs(lang) {
+    $.ajax({
+        cache:false,
+        url:'/welcome/languages',
+        type:"post",
+        data:{ langs : lang },
+        success:function(d) {
+            var v=$.parseJSON(d);
+            self.location.reload();
+        },
+        error:function(d) {
+            alert('<?=sc('E998','msg')?>');
+        }
+    });
+}
 $(function() {
     setTimeout(function() {
         $('input:file').each(function(){
@@ -111,7 +128,7 @@ $(function() {
         $("#logout_form").submit();
         return false;
     });
-    $("#signin_form").submit(function() {
+    $("#signin").click(function() {
         if(!prmchk($('#signin_id').val())) {
             alert('id please 0~9, a~z, 4~20byte');
             $('#signin_id').focus();

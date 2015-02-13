@@ -62,3 +62,27 @@ if ( ! function_exists('sc'))
         return array('ret' => $code, 'msg' => $ret[$code]);
     }
 }
+
+if (! function_exists('mu'))
+{
+    function lang($en) {
+        $local = ($_COOKIE['languages']) ? $_COOKIE['languages'] : 'english' ;
+        if($local == 'english') {
+            return $en;
+        }
+        $en = strtolower($en);
+        $res['korea'] = array(
+            'products' => '상품',
+            'demo' => '데모',
+            'signin' => '회원가입',
+            'id' => '아이디',
+            'password' => '비밀번호',
+            'login' => '로그인',
+        );
+        if(empty(array_key_exists($en, $res[$local]))) {
+            return $en;
+        } else {
+            return $res[$local][$en];
+        }
+    }
+}
