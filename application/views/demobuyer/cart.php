@@ -53,20 +53,29 @@ foreach($cartlist as $k => $v) {
                 <div class="form-group">
                     <label for="deliveryaddr" class="col-sm-3 control-label">Delivery Address</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" id="deliveryaddr" placeholder="Delivery Address" value="515, sealul Bldg, 18 Teheran-ro33-gil, Gangnam-gu, Seoul, Korea">
+                        <select class="form-control" id="deliveryaddr">
+                            <option value="">Select Delivery Address</option>
+                            <option value="515">515, seoul Bldg, 18 Teheran-ro33-gil, Gangnam-gu, Seoul, Korea</option>
+                            <option value="514">514, seoul Bldg, 18 Teheran-ro33-gil, Gangnam-gu, Seoul, Korea</option>
+                            <option value="513">513, seoul Bldg, 18 Teheran-ro33-gil, Gangnam-gu, Seoul, Korea</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email</label>
+                    <label for="paymentpart" class="col-sm-3 control-label">대금지급부서</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" placeholder="Email">
+                        <select class="form-control" id="paymentpart" style="width:150px;">
+                            <option value="">선택</option>
+                            <option value="영업3팀">영업3팀</option>
+                            <option value="총무팀">총무팀</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="approval" class="col-sm-3 control-label">Approval</label>
                     <div class="col-sm-9">
                         <select class="form-control" id="approval" style="width:150px;">
-                            <option value="">-------</option>
+                            <option value="">Select Approval</option>
                             <option value="ceo">Manager</option>
                         </select>
                     </div>
@@ -120,8 +129,8 @@ $(function() {
             alert('Delivery Address, please');
             return false;
         }
-        if(!$("#email").val()) {
-            alert('Email, please');
+        if(!$("#paymentpart").val()) {
+            alert('대금 지급 부서 선택해 주세요.');
             return false;
         }
         if(!$("#approval").val()) {

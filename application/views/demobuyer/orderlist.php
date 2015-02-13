@@ -8,71 +8,62 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Order Date</th>
-                        <th>Delivery Request Date</th>
-                        <th>Products Count</th>
-                        <th>Delivery Address</th>
-                        <th>Order Total Price</th>
-                        <th>Order Email</th>
+                        <th>Order No</th>
+                        <th>Product No</th>
+                        <th style="width:80px">Order Date</th>
+                        <th>Request Delivery Date</th>
+                        <th>Delivery Date Scheduled</th>
+                        <th>Product Info</th>
+                        <th>Unit</th>
+                        <th>Price(RP.)</th>
+                        <th>Quantity</th>
+                        <th>입고수량</th>
+                        <th>Tatal Price(RP.)</th>
+                        <th>VAT(RP.)</th>
+                        <th>Total Price + VAT(RP.)</th>
+                        <th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
 <?
 foreach($orderlist as $k => $v) {
+    $class = ($v[11] == '확정주문')?'active':(($v[11] == '출하')?'warning':(($v[11] == '입고완료')?'danger':''))
 ?>
-                    <tr>
+                    <tr class="<?=$class?>">
                         <td><?=$v[0]?></td>
                         <td><?=$v[1]?></td>
-                        <td><button type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#detailorder<?=$k?>" aria-expanded="false" aria-controls="detailorder<?=$k?>">Detail Order..</button>
+                        <td><?=$v[2]?></td>
                         <td><?=$v[3]?></td>
-                        <td>RP. <?=number_format($v[5])?></td>
                         <td><?=$v[4]?></td>
-                    </tr>
-                    <tr class="collapse" id="detailorder<?=$k?>">
-                        <td colspan="8">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Progress</th>
-                                    <th>Approval Date</th>
-                                    <th>Delivery Date</th>
-                                    <th>Image</th>
-                                    <th>Code/Name</th>
-                                    <th>Company</th>
-                                    <th>Unit</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <td><strong><?=$v[5]?></strong><br><?=$v[6]?></td>
+                        <td><?=$v[8]?></td>
+                        <td><?=number_format($v[9])?></td>
+                        <td><?=number_format($v[10])?></td>
+                        <td id="incomerow<?=$k?>">
 <?
-    foreach($v[2] as $kk => $vv) {
+    if($v[11] == '출하') {
 ?>
-                                <tr>
-                                    <td><?=$vv[9]?></td>
-                                    <td><?=$vv[11]?></td>
-                                    <td><?=$vv[10]?></td>
-                                    <td><img src="<?=$vv[0]?>"></td>
-                                    <td><?=$vv[1]?> / <?=$vv[2]?><br>Size <?=$vv[3]?></td>
-                                    <td><?=$vv[4]?></td>
-                                    <td><?=$vv[5]?></td>
-                                    <td>RP. <?=number_format($vv[6])?></td>
-                                    <td><?=$vv[7]?>
+                            <input type="text" maxlength="2" size="2" id="income<?=$k?>" value="<?=$v[10]?>">
 <?
-        if($vv[9] == 'Ready') {
+    } else if($v[11] == '입고완료') {
 ?>
-<br><input type="text" size="2" maxlength="2" id="comp<?=$kk?>" value="0">
-<br><button type="button" class="btn btn-primary btn-sm complete" id="complete<?=$k?>" data-group='{"comp":"comp<?=$kk?>"}'>Complete</button>
-<?
-        }
-?></td>
-                                    <td>RP. <?=number_format($vv[8])?></td>
-                                </tr>
+                            <?=$v[10]?>
 <?
     }
 ?>
-                            </table>
+                        </td>
+                        <td><?=number_format($v[9] * $v[10])?></td>
+                        <td><?=number_format(($v[9] * $v[10]) * 0.1)?></td>
+                        <td><?=number_format(($v[9] * $v[10]) + ($v[9] * $v[10]) * 0.1)?></td>
+                        <td>
+                            <strong id="st<?=$k?>"><?=$v[11]?></strong>
+<?
+    if($v[11] == '출하') {
+?>
+                            <button type="button" class="btn btn-success btn-sm complete" data-group='{"income":"income<?=$k?>", "incomerow":"incomerow<?=$k?>", "btnid":"btn<?=$k?>", "st":"st<?=$k?>"}' id="btn<?=$k?>">입고처리</button>
+<?
+    }
+?>
                         </td>
                     </tr>
 <?
@@ -85,15 +76,24 @@ foreach($orderlist as $k => $v) {
     </div>
 </div>
 <script>
+Number.prototype.format = function(){
+    if(this==0) return 0;
+    var reg = /(^[+-]?\d+)(\d{3})/;
+    var n = (this + '');
+    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+    return n;
+};
+
 $(function() {
     $(".complete").each(function() {
         $(this).click(function() {
-            if($("#"+$(this).data('group').comp).val() == 0) {
-                alert('Check Delivery Conut');
-                return false;
-            }
-            if(confirm('Complete?')) {
+            if(confirm('Check Delivery Quantity?')) {
                 alert('Complete');
+                var incomeval = $("#"+$(this).data('group').income).val();
+                var comeval = parseInt(incomeval,10);
+                $("#"+$(this).data('group').btnid).hide();
+                $("#"+$(this).data('group').incomerow).html(comeval.format());
+                $("#"+$(this).data('group').st).html('입고완료');
             }
             return false;
         });

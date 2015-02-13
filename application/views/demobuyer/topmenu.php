@@ -25,30 +25,45 @@ foreach($topmenu as $k => $v) {
                 <ul class="nav navbar">
                     <li class="dropdown"><button class="dropdown-toggle btn btn-default" data-toggle="dropdown">Categories <b class="caret"></b></button>
                         <ul class="dropdown-menu">
-                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Category 1</a>
+<?
+foreach($categories as $k => $v) {
+?>
+                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$k?></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Sub Category 1-1</a></li>
-                                    <li><a href="#">Sub Category 1-2</a></li>
-                                    <li><a href="#">Sub Category 1-3</a></li>
-                                    <li><a href="#">Sub Category 1-4</a></li>
+<?
+    foreach($v as $kk => $vv) {
+?>
+                                    <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$kk?></a>
+                                        <ul class="dropdown-menu">
+<?
+        foreach($vv as $kkk => $vvv) {
+?>
+                                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=$kkk?></a>
+                                                <ul class="dropdown-menu">
+                                                    <li><a href="/demobuyer/search">All <?=$kkk?></a></li>
+                                                    <li role="presentation" class="divider"></li>
+<?
+            foreach($vvv as $kkkk => $vvvv) {
+?>
+                                                    <li><a href="/demobuyer/search"><?=$vvvv?></a></li>
+<?
+            }
+?>
+                                                </ul>
+                                            </li>
+<?
+        }
+?>
+                                        </ul>
+                                    </li>
+<?
+    }
+?>
                                 </ul>
                             </li>
-                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Category 2</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Sub Category 2-1</a></li>
-                                    <li><a href="#">Sub Category 2-2</a></li>
-                                    <li><a href="#">Sub Category 2-3</a></li>
-                                    <li><a href="#">Sub Category 2-4</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Category 3</a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">Sub Category 3-1</a></li>
-                                    <li><a href="#">Sub Category 3-2</a></li>
-                                    <li><a href="#">Sub Category 3-3</a></li>
-                                    <li><a href="#">Sub Category 3-4</a></li>
-                                </ul>
-                            </li>
+<?
+}
+?>
                         </ul>
                     </li>
                 </ul>

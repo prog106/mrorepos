@@ -9,7 +9,8 @@
                     <thead>
                     <tr>
                         <th>Image</th>
-                        <th class="col-sm-3">Code/Name</th>
+                        <th>Product No</th>
+                        <th class="col-sm-3">Product Infomation</th>
                         <th>Company</th>
                         <th>Unit</th>
                         <th>Price</th>
@@ -22,14 +23,15 @@
 foreach($searchlist as $k => $v) {
 ?>
                     <tr>
-                        <td><img src="<?=$v[0]?>"></td>
-                        <td><?=$v[1]?> / <?=$v[2]?><br>Size <?=$v[3]?></td>
+                        <td><img src="<?=$v[0]?>" width="60"></td>
+                        <td><?=$v[1]?></td>
+                        <td><?=$v[2]?><br><?=$v[3]?></td>
                         <td><?=$v[4]?></td>
                         <td><?=$v[5]?></td>
                         <td>RP. <?=number_format($v[6]);?></td>
                         <td><input type="text" size="2" maxlength="2" value="1"></td>
                         <td style="text-align:center"><span class="glyphicon glyphicon-shopping-cart"></span><br><a href="javascript:;" onclick="addcart();">Add to Cart</a><br>
-                            <span class="glyphicon glyphicon-credit-card"></span><br><a href="/mro/order">Order</a></td>
+                            <span class="glyphicon glyphicon-credit-card"></span><br><a href="javascript:;" onclick="moveorder();">Order</a></td>
                     </tr>
 <?
 }
@@ -43,7 +45,12 @@ foreach($searchlist as $k => $v) {
 <script>
 function addcart() {
     if(confirm('장바구니 담았음. 장바구니로 이동?')) {
-        location.href='/demobuyer/cart';
+        location.href = '/demobuyer/cart';
+    }
+}
+function moveorder() {
+    if(confirm('바로 주문하시겠습니까?')) {
+        location.href = '/demobuyer/cart';
     }
 }
 </script>

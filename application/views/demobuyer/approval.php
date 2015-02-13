@@ -8,74 +8,52 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <th>Order Date</th>
-                        <th>Delivery Request Date</th>
-                        <th>Products Count</th>
-                        <th>Delivery Address</th>
-                        <th>Order Total Price</th>
-                        <th>Order Email</th>
+                        <th>check</th>
+                        <th>Order No</th>
+                        <th>Product No</th>
+                        <th style="width:80px">Order Date</th>
+                        <th>Request Delivery Date</th>
+                        <th>대금지급부서</th>
+                        <th>Product Info</th>
+                        <th>Unit</th>
+                        <th>Price(RP.)</th>
+                        <th>Quantity(RP.)</th>
+                        <th>Tatal Price(RP.)</th>
+                        <th>VAT(RP.)</th>
+                        <th>Total Price + VAT(RP.)</th>
+                        <th>Status</th>
+                        <th>Del</th>
                         </tr>
                     </thead>
                     <tbody>
 <?
-foreach($approvallist as $k => $v) {
+foreach($orderlist as $k => $v) {
+    if($v[11] != "신규주문") continue;
 ?>
-                    <tr>
+                    <tr id="row<?=$k?>">
+                        <td id="chkappr<?=$k?>"><div class="checkbox"><label><input type="checkbox" class="chkappr" data-group='{"chkappr":"chkappr<?=$k?>", "row":"row<?=$k?>", "st":"st<?=$k?>", "ocnt":"ocnt<?=$k?>", "cnt":"cnt<?=$k?>", "trash":"trash<?=$k?>"}' checked>check</label></div></td>
                         <td><?=$v[0]?></td>
                         <td><?=$v[1]?></td>
-                        <td><button type="button" class="btn btn-default btn-sm" data-toggle="collapse" data-target="#detailorder<?=$k?>" aria-expanded="false" aria-controls="detailorder<?=$k?>">Detail Order..</button>
+                        <td><?=$v[2]?></td>
                         <td><?=$v[3]?></td>
-                        <td>RP. <?=number_format($v[5])?></td>
-                        <td><?=$v[4]?></td>
-                    </tr>
-                    <tr class="collapse" id="detailorder<?=$k?>">
-                        <td colspan="8">
-                            <table class="table table-bordered">
-                                <thead>
-                                <tr>
-                                    <th>Approval check</th>
-                                    <th>Progress</th>
-                                    <th>Image</th>
-                                    <th>Code/Name</th>
-                                    <th>Company</th>
-                                    <th>Unit</th>
-                                    <th>Price</th>
-                                    <th>Quantity</th>
-                                    <th>Total Price</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-<?
-    foreach($v[2] as $kk => $vv) {
-?>
-                                <tr>
-                                    <td><div class="checkbox"><label><input type="checkbox" id="chkappr<?=$k?><?=$kk?>" class="chkappr">check</label></div></td>
-                                    <td><?=$vv[9]?></td>
-                                    <td><img src="<?=$vv[0]?>"></td>
-                                    <td><?=$vv[1]?> / <?=$vv[2]?><br>Size <?=$vv[3]?></td>
-                                    <td><?=$vv[4]?></td>
-                                    <td><?=$vv[5]?></td>
-                                    <td>RP. <?=number_format($vv[6])?><input type="hidden" id="prc<?=$k?><?=$kk?>" value="<?=$vv[6]?>"</td>
-                                    <td><input id="ordcnt<?=$k?><?=$kk?>" type="text" size="2" maxlength="2" value="<?=$vv[7]?>" class="qv" data-group='{"prc":"prc<?=$k?><?=$kk?>","totalprc":"totalprc<?=$k?><?=$kk?>","chkappr":"chkappr<?=$k?><?=$kk?>","sprc":"sprc<?=$k?>","smprc":"smprc<?=$k?>"}'></td>
-                                    <td><div id="totalprc<?=$k?><?=$kk?>"></div></td>
-                                </tr>
-<?
-    }
-?>
-                                <tr>
-                                    <td colspan="7"></td>
-                                    <td colspan="1">Total Price</td>
-                                    <td colspan="1"><div id="sprc<?=$k?>"></div><input type="hidden" id="smprc<?=$k?>" value="0"></td>
-                                </tr>
-                                <tr>
-                                <td colspan="9"><button type="button" class="btn btn-danger" id="approval" data-group='{"smprc":"smprc<?=$k?>"}'>Approval</button></td>
-                                </tr>
-                            </table>
-                        </td>
+                        <td><?=$v[12]?></td>
+                        <td><strong><?=$v[5]?></strong><br><?=$v[6]?></td>
+                        <td><?=$v[8]?></td>
+                        <td><?=number_format($v[9])?><input type="hidden" id="price<?=$k?>" value="<?=$v[9]?>"></td>
+                        <td id="ocnt<?=$k?>"><input type="text" maxlength="2" size="2" value="<?=number_format($v[10])?>" class="cnt" id="cnt<?=$k?>" data-group='{"total":"total<?=$k?>", "vat":"vat<?=$k?>", "totalvat":"totalvat<?=$k?>", "price":"price<?=$k?>"}'></td>
+                        <td id="total<?=$k?>"><?=number_format($v[9] * $v[10])?></td>
+                        <td id="vat<?=$k?>"><?=number_format(($v[9] * $v[10]) * 0.1)?></td>
+                        <td id="totalvat<?=$k?>"><?=number_format(($v[9] * $v[10]) + ($v[9] * $v[10]) * 0.1)?></td>
+                        <td id="st<?=$k?>"><strong id="st<?=$k?>"><?=$v[11]?></strong></td>
+                        <td id="trash<?=$k?>"><button type="button" class="btn btn-danger btn-sm trash" data-group='{"row":"row<?=$k?>"}'><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></td>
                     </tr>
 <?
 }
 ?>
+                    <tr>
+                        <td colspan="12"></td>
+                        <td colspan="3"><button type="button" class="btn btn-success btn-sm" id="approval" data-group='{"cnt":"cnt<?=$k?>", "row":"row<?=$k?>", "st":"st<?=$k?>", "ocnt":"ocnt<?=$k?>"}'>승인하기</button></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -91,32 +69,47 @@ Number.prototype.format = function(){
     return n;
 };
 
-function qv() {
-    var tpv = 0;
-    $('.qv').each(function() {
-        var pv = $(this).val();
-        var qv = $("#"+$(this).data('group').prc).val();
-        $("#"+$(this).data('group').totalprc).html('RP. ' + (pv * qv).format());
-        if($("#"+$(this).data('group').chkappr).prop('checked')) {
-            tpv += parseInt(pv * qv,10);
-        }
-        $("#"+$(this).data('group').sprc).html('RP. ' + tpv.format());
-        $("#"+$(this).data('group').smprc).val(tpv);
+function chg() {
+    $('.cnt').each(function() {
+        var cntval = $(this).val();
+        var priceval = $("#"+$(this).data('group').price).val();
+        $("#"+$(this).data('group').total).html((cntval * priceval).format());
+        $("#"+$(this).data('group').vat).html((cntval * priceval * 0.1).format());
+        $("#"+$(this).data('group').totalvat).html(((cntval * priceval) + (cntval * priceval * 0.1)).format());
     });
 }
-qv();
+
 $(function() {
-    $('.qv').keyup(function() { qv(); });
-    $('.chkappr').change(function() { qv(); });
-    $('#approval').click(function() {
-        if($("#"+$(this).data('group').smprc).val() == 0) {
-            alert('Approval check, please');
+    $('.cnt').keyup(function() { chg(); });
+    $('.trash').each(function() {
+        $(this).click(function() {
+            if(confirm('정말 삭제하시겠습니까?')) {
+                $("#"+$(this).data('group').row).hide();
+                return false;
+            }
             return false;
-        }
+        });
+    });
+    $("#approval").click(function() {
         if(confirm('Approval?')) {
-            location.href='/demobuyer/orderlist';
+            var errval = 0;
+            $(".chkappr").each(function() {
+                if($(this).prop('checked')) {
+                    var cntval = $("#"+$(this).data('group').cnt).val();
+                    if(cntval > 0) {
+                        $("#"+$(this).data('group').chkappr).html('');
+                        $("#"+$(this).data('group').trash).html('');
+                        $("#"+$(this).data('group').ocnt).html(cntval);
+                        $("#"+$(this).data('group').st).html('<strong>주문확정</strong>');
+                    } else {
+                        errval++;
+                    }
+                }
+            });
+            if(errval > 0) {
+                alert('주문수량이 0인 주문이 있습니다. 확인해 주세요');
+            }
         }
-        return false;
     });
     $('#deliverydate').datepicker({ format: 'yyyy-mm-dd', startDate: '+1d' });
 });
