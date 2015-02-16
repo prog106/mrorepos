@@ -34,6 +34,8 @@ class Uploads extends CI_Controller {
                 $file_name = $this->upload_path."/".$result['file_name'];
                 $thumb_file_name = $this->upload_path."/thumb_".$result['file_name'];
 
+                /*
+                 * image resize && crop
                 $config['image_library'] = 'gd';
                 $config['source_image'] = $this->upload_root.$file_name;
                 $config['create_thumb'] = TRUE;
@@ -46,9 +48,10 @@ class Uploads extends CI_Controller {
                 if(!$this->image_lib->resize()) {
                     echo $this->image_lib->display_errors();
                 }
+                */
 
-                $return = array('ret' => 'OK', 'msg' => $thumb_file_name);
-                //$return = array('ret' => 'OK', 'msg' => $file_name);
+                //$return = array('ret' => 'OK', 'msg' => $thumb_file_name);
+                $return = array('ret' => 'OK', 'msg' => $file_name);
             }
         }
         echo json_encode($return);

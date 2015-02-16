@@ -11,9 +11,9 @@ class WelcomeDao extends CI_Model {
     }
 
     public function getList1($sql_prm) {
-        $sql = "SELECT * FROM baba WHERE view_flag=?";
+        $sql = "SELECT * FROM test WHERE view_flag=?";
         $sql .= " ORDER BY id DESC";
-        $res = $this->db1->query($sql, $sql_prm);
+        $res = $this->db2->query($sql, $sql_prm);
         if($res->num_rows() > 0)
             return $res->result_array();
         else
@@ -30,16 +30,16 @@ class WelcomeDao extends CI_Model {
     }
 
     public function getOne($srl) {
-        $sql = "SELECT * FROM baba WHERE id = ? LIMIT 1";
-        $res = $this->db1->query($sql, array($srl));
+        $sql = "SELECT * FROM test WHERE id = ? LIMIT 1";
+        $res = $this->db2->query($sql, array($srl));
         return $res->row_array();
     }
 
     public function saveInfo($sql_prm) {
         $sql_prm['regdate'] = date('Y-m-d H:i:s');
         $sql_prm['view_flag'] = 'Y';
-        $this->db1->insert('baba', $sql_prm);
-        return $this->db1->affected_rows();
+        $this->db2->insert('test', $sql_prm);
+        return $this->db2->affected_rows();
     }
 
     public function getLogin($sql_prm) {

@@ -6,6 +6,8 @@ xmlrpc test result
 debug($rpcret);
 ?>
 <br>
+
+
 <?
 if(empty($logininfo)) {
 ?>
@@ -31,6 +33,8 @@ if(empty($logininfo)) {
 </form>
 <? } ?>
 <br>
+
+
 데이터 추가 등록
 <form id="mro_form" name="mro_form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="upimg1_tmp" id="upimg1_tmp" value="">
@@ -40,6 +44,8 @@ photo : <input id="upimg1" type="file" multiple="true">
 <div id="tmpPreview_upimg1" class="tmpPreviewBox" style="display:none"></div>
 <input type="submit" value="등록">
 </form>
+
+
 리스트1
 <table border="1">
 <?
@@ -52,6 +58,8 @@ foreach($list1 as $k => $v) {
 ?>
 </table>
 <p>
+
+
 리스트2
 <table border="1">
 <?
@@ -64,7 +72,16 @@ foreach($list2 as $k => $v) {
 ?>
 </table>
 <p>
+
+
 1개
+<?
+if(empty($one)) {
+?>
+<br>No Data
+<?
+} else {
+?>
 <table border="1">
     <tr>
         <td><?=$one['id']?></td>
@@ -73,6 +90,11 @@ foreach($list2 as $k => $v) {
         <td><?=$one['regdate']?></td>
     </tr>
 </table>
+<?
+}
+?>
+
+
 <script type="text/javascript">
 function prmchk(str) {
     return ((str.match(/[^(0-9a-z)]/)) ? false : true) ? ((str.length < 4 || str.length > 20) ? false : true) : false ;

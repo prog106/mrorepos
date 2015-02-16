@@ -55,12 +55,12 @@ if(ENVIRONMENT == 'release') {
 }
 
 $db['inkocore']['hostname'] = '127.0.0.1';
-$db['inkocore']['username'] = 'prog106';
-$db['inkocore']['password'] = 'inko1234';
-$db['inkocore']['database'] = 'prog106DB';
+$db['inkocore']['username'] = 'inkocore';
+$db['inkocore']['password'] = 'core1234';
+$db['inkocore']['database'] = 'inkocoreDB';
 $db['inkocore']['dbdriver'] = 'mysql';
 $db['inkocore']['dbprefix'] = '';
-$db['inkocore']['pconnect'] = TRUE;
+$db['inkocore']['pconnect'] = FALSE;
 $db['inkocore']['db_debug'] = $db_debug;
 $db['inkocore']['cache_on'] = FALSE;
 $db['inkocore']['cachedir'] = '';
@@ -76,7 +76,7 @@ $db['inkomaro']['password'] = 'inko1234';
 $db['inkomaro']['database'] = 'inkomaroDB';
 $db['inkomaro']['dbdriver'] = 'mysql';
 $db['inkomaro']['dbprefix'] = '';
-$db['inkomaro']['pconnect'] = TRUE;
+$db['inkomaro']['pconnect'] = FALSE;
 $db['inkomaro']['db_debug'] = $db_debug;
 $db['inkomaro']['cache_on'] = FALSE;
 $db['inkomaro']['cachedir'] = '';
