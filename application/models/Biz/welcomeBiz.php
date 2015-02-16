@@ -14,7 +14,9 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return sc('E201');
+                $return['ret'] = 'ERR';
+                $return['msg'] = lang('check parameter');
+                return $return;
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
@@ -29,7 +31,9 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return sc('E201');
+                $return['ret'] = 'ERR';
+                $return['msg'] = lang('check parameter');
+                return $return;
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
@@ -51,14 +55,18 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return sc('E201');
+                $return['ret'] = 'ERR';
+                $return['msg'] = lang('check parameter');
+                return $return;
             } else {
                 $sql_prm[$v] = $prm[$v];
             }
         }
         $res = $this->welcome->saveInfo($sql_prm);
         if(empty($res)) {
-            return sc('E100');
+            $return['ret'] = 'ERR';
+            $return['msg'] = lang('save failed');
+            return $return;
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;
@@ -71,7 +79,9 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return sc('E201');
+                $return['ret'] = 'ERR';
+                $return['msg'] = lang('check parameter');
+                return $return;
             } else {
                 if($v == 'userpassword') {
                     $sql_prm[$v] = md5($prm[$v]);
@@ -82,7 +92,9 @@ class WelcomeBiz extends CI_Model {
         }
         $res = $this->welcome->getLogin($sql_prm);
         if(empty($res)) {
-            return sc('E900');
+            $return['ret'] = 'ERR';
+            $return['msg'] = lang('no match');
+            return $return;
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;
@@ -95,7 +107,9 @@ class WelcomeBiz extends CI_Model {
         $sql_prm = array();
         foreach($chkey as $k => $v) {
             if(empty($prm[$v])) {
-                return sc('E201');
+                $return['ret'] = 'ERR';
+                $return['msg'] = lang('check parameter');
+                return $return;
             } else {
                 if($v == 'userpassword') {
                     $sql_prm[$v] = md5($prm[$v]);
@@ -106,7 +120,9 @@ class WelcomeBiz extends CI_Model {
         }
         $res = $this->welcome->saveLogin($sql_prm);
         if(empty($res)) {
-            return sc('E910');
+            $return['ret'] = 'ERR';
+            $return['msg'] = lang('save failed');
+            return $return;
         } else {
             $return['ret'] = 'OK';
             $return['msg'] = $res;

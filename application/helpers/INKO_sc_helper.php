@@ -3,81 +3,42 @@
  * @ description : status code list & etc...
  * @ author : Sookwon Lee <prog106@inkomaro.com>
  */
-if ( ! function_exists('alertmsg'))
-{
-
-    function alertmsg($prm) {
+if(!function_exists('alertmsg')) {
+    function alertmsg($msg) {
         echo "
 <html>
 <head>
 <meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 </head>
 <body>
-<script> alert('".$prm['msg']."'); </script>
+<script> alert('".$msg."'); </script>
 </body>
 </html>";
     }
-
 }
 
-if ( ! function_exists('sc'))
-{
-	function sc($code='E999', $view=null)
-	{
-        $res['korea'] = array(
-            'S100' => '정상적으로 등록되었습니다.',
-            'S900' => '회원가입이 완료 되었습니다.',
-            'E000' => '정상적인 접근이 아닙니다.',
-            'E100' => '등록에 실패하였습니다.',
-            'E201' => '필수 파라미터가 없습니다.',
-            'E900' => '아이디 or 비밀번호가 일치하지 않습니다.',
-            'E910' => '회원가입에 실패하였습니다.',
-            'E920' => '로그아웃에 실패하였습니다.',
-            'E930' => '로그인에 실패하였습니다.',
-            'E999' => '일치하는 에러코드가 없습니다.',
-        );
-        // english
-        $res['english'] = array(
-            'V000' => 'Welcome MRO',
-            'T110' => 'Login ID Check Please! (number, a to z, 4~20byte)',
-            'T120' => 'Login Password Check Please! (number, a to z, 4~20byte)',
-            'C900' => 'Do you want Delete, Realy?',
-            'S100' => '정상적으로 등록되었습니다.',
-            'S900' => '회원가입이 완료 되었습니다.',
-            'E000' => '정상적인 접근이 아닙니다.',
-            'E100' => '등록에 실패하였습니다.',
-            'E201' => '필수 파라미터가 없습니다.',
-            'E900' => '아이디 or 비밀번호가 일치하지 않습니다.',
-            'E910' => '회원가입에 실패하였습니다.',
-            'E920' => '로그아웃에 실패하였습니다.',
-            'E930' => '로그인에 실패하였습니다.',
-            'E998' => '처리중 오류가 발생하였습니다. 다시 시도해 주세요.',
-            'E999' => 'No Error Code',
-        );
-        $ret = $res[LANGS];
-        $code = (empty($ret[$code])) ? 'E999' : $code;
-        if($view == 'msg') {
-            return $ret[$code];
-        }
-        return array('ret' => $code, 'msg' => $ret[$code]);
-    }
-}
-
-if (! function_exists('mu'))
-{
+if(!function_exists('lang')) {
     function lang($en) {
-        $local = ($_COOKIE['languages']) ? $_COOKIE['languages'] : 'english' ;
+        $local = (!empty($_COOKIE['languages'])) ? $_COOKIE['languages'] : 'english' ;
         if($local == 'english') {
             return $en;
         }
         $en = strtolower($en);
         $res['korea'] = array(
+            'error' => '오류',
             'products' => '상품',
             'demo' => '데모',
             'signin' => '회원가입',
             'id' => '아이디',
             'password' => '비밀번호',
             'login' => '로그인',
+            'comments' => '상세설명',
+            'image' => '이미지',
+            'photo' => '사진',
+            'wrong connect' => '잘못된 접근입니다.',
+            'welcome mro' => '어서오세요',
+            'no match' => '일치하는 정보 없음',
+            'success' => '성공',
         );
         if(empty(array_key_exists($en, $res[$local]))) {
             return $en;

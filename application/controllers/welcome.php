@@ -56,6 +56,15 @@ class Welcome extends CI_Controller {
             $data['rpcret'] = $this->xmlrpc->display_response();
         }
 
+        // memcached test
+        $this->load->driver('cache');
+        $times = $this->cache->memcached->get('times');
+        if(empty($times)) {
+            $this->cache->memcached->save('times', date('Y-m-d H:i:s'), 10*1); // sec
+            $times = $this->cache->memcached->get('times');
+        }
+        $data['memcache_time'] = $times;
+
         // 리스트1
         $data['logininfo'] = $this->encrypt->decode($this->input->cookie('mro', true));
         $prm['view_flag'] = 'Y';
@@ -73,7 +82,7 @@ class Welcome extends CI_Controller {
         $data['list2'] = $res['msg'];
 
         // 1개
-        $res = $this->model->getOne(14);
+        $res = $this->model->getOne(10);
         if($res['ret'] != 'OK') {
             exit($res['msg']);
         }
@@ -119,7 +128,8 @@ class Welcome extends CI_Controller {
     // 회원가입
     public function exsignin() {
         if(empty($this->input->is_ajax_request())) {
-            exit(json_encode(sc('E000')));
+            $return = array('ret' => 'ERR', 'msg' => lang('wrong connect'));
+            exit(json_encode($return));
         }
 
         $prm['userid'] = $this->input->post('signin_id', true);
@@ -129,7 +139,7 @@ class Welcome extends CI_Controller {
         if($res['ret'] != 'OK') {
             exit(json_encode($res));
         }
-        $return = array('ret' => 'OK', 'msg' => sc('S900','msg'));
+        $return = array('ret' => 'OK', 'msg' => lang('singin complete'));
         echo json_encode($return);
     }
 
@@ -143,7 +153,7 @@ class Welcome extends CI_Controller {
             'path' => '/',
         );
         setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
-        $return = array('ret' => 'OK', 'msg' => sc('S900','msg'));
+        $return = array('ret' => 'OK', 'msg' => lang('language changed'));
         echo json_encode($return);
     }
 
@@ -155,7 +165,7 @@ class Welcome extends CI_Controller {
 
         $res = $this->model->getLogin($prm);
         if($res['ret'] != 'OK') {
-            alertmsg(sc('E900'));
+            alertmsg(lang('no match'));
             redirect((empty($returl)?'/':$returl), 'refresh');
         }
         $info = $res['msg'];
@@ -170,7 +180,7 @@ class Welcome extends CI_Controller {
         );
         $res = setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
         if(empty($res)) {
-            alertmsg(sc('E930'));
+            alertmsg(lang('error'));
         }
         redirect((empty($returl)?'/':$returl), 'refresh');
     }
@@ -187,7 +197,7 @@ class Welcome extends CI_Controller {
         );
         setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
         if(empty($this->input->cookie('mro', true))) {
-            alertmsg(sc('E920'));
+            alertmsg(lang('error'));
         }
         redirect((empty($returl)?'/':$returl), 'refresh');
     }
@@ -195,7 +205,8 @@ class Welcome extends CI_Controller {
     // 신규 등록
     public function exadd() {
         if(empty($this->input->is_ajax_request())) {
-            exit(json_encode(sc('E000')));
+            $return = array('ret' => 'ERR', 'msg' => lang('wrong connect'));
+            exit(json_encode($return));
         }
 
         $prm['comments'] = $this->input->post('comments', true);
@@ -206,7 +217,7 @@ class Welcome extends CI_Controller {
             exit(json_encode($res));
         }
 
-        $return = array('ret' => 'OK', 'msg' => sc('S100','msg'));
+        $return = array('ret' => 'OK', 'msg' => lang('success'));
         echo json_encode($return);
     }
 }

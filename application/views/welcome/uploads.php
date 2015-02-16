@@ -1,5 +1,5 @@
-<a href="javascript:;" onclick="langs('korea');">한글</a> | <a href="javascript:;" onclick="langs('english');">English</a>
-<?=sc('S000', 'msg')?>
+<a href="javacript:;" onclick="langs('korea');">한글</a> | <a href="javascript:;" onclick="langs('english');">English</a>
+
 <h1><?=lang('Demo')?> [ <?=$ec?> ]</h1>
 xmlrpc test result
 <?
@@ -7,6 +7,8 @@ debug($rpcret);
 ?>
 <br>
 
+<h1>Memcached Test(10sec) [ <?=$memcache_time?> ]</h1>
+<br>
 
 <?
 if(empty($logininfo)) {
@@ -38,9 +40,9 @@ if(empty($logininfo)) {
 데이터 추가 등록
 <form id="mro_form" name="mro_form" method="post" enctype="multipart/form-data">
 <input type="hidden" name="upimg1_tmp" id="upimg1_tmp" value="">
-comments : <input type="text" id="comments" name="comments">
+<?=lang('comments')?> : <input type="text" id="comments" name="comments">
 <br>
-photo : <input id="upimg1" type="file" multiple="true">
+<?=lang('photo')?> : <input id="upimg1" type="file" multiple="true">
 <div id="tmpPreview_upimg1" class="tmpPreviewBox" style="display:none"></div>
 <input type="submit" value="등록">
 </form>
@@ -110,7 +112,7 @@ function langs(lang) {
             self.location.reload();
         },
         error:function(d) {
-            alert('<?=sc('E998','msg')?>');
+            alert('<?=lang('error')?>');
         }
     });
 }
@@ -173,20 +175,20 @@ $(function() {
                 alert(v.msg);
             },
             error:function(d) {
-                alert('<?=sc('E998','msg')?>');
+                alert('<?=lang('error')?>');
             }
         });
         return false;
     });
     $("#login_act").click(function() {
         if(!prmchk($('#login_id').val())) {
-            alert('<?=sc('T110','msg')?>');
+            alert('<?=lang('check login id')?>');
             $('#login_id').focus();
             return false;
         }
 
         if(!prmchk($('#login_pw').val())) {
-            alert('<?=sc('T120','msg')?>');
+            alert('<?=lang('check login password')?>');
             $('#login_pw').focus();
             return false;
         }
@@ -222,7 +224,7 @@ $(function() {
                 }
             },
             error:function(d) {
-                alert('<?=sc('E998','msg')?>');
+                alert('<?=lang('error')?>');
             }
         });
         return false;
@@ -237,7 +239,7 @@ function PreviewtmpImage(mid,msg) {
     }
 }
 function DeletetmpImage(mid,msg) {
-    if(confirm('<?=sc('C900','msg')?>')) {
+    if(confirm('<?=lang('no match')?>')) {
         $('#'+mid+'_tmp').val('');
         $('#tmpPreview_'+mid).html('').hide();
     }
