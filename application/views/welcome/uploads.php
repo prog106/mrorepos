@@ -6,8 +6,10 @@ xmlrpc test result
 debug($rpcret);
 ?>
 <br>
-
-<h1>Memcached Test(10sec) [ <?=$memcache_time?> ]</h1>
+<h3>Memcached Time(60sec) [ <?=$memcache_time?> ]</h3>
+<a href="/welcome/memreset">Memcached Time Reset</a>
+<br>
+<a href="/welcome/memallreset">Memcached All Reset</a>
 <br>
 
 <?

@@ -60,7 +60,7 @@ class Welcome extends CI_Controller {
         $this->load->driver('cache');
         $times = $this->cache->memcached->get('times');
         if(empty($times)) {
-            $this->cache->memcached->save('times', date('Y-m-d H:i:s'), 10*1); // sec
+            $this->cache->memcached->save('times', date('Y-m-d H:i:s'), 60*1); // sec
             $times = $this->cache->memcached->get('times');
         }
         $data['memcache_time'] = $times;
@@ -93,6 +93,18 @@ class Welcome extends CI_Controller {
 
         $data['tmp'] = 'welcome/uploads'; // template
         $this->load->view('common/body',$data);
+    }
+
+    public function memreset() {
+        $this->load->driver('cache');
+        $this->cache->memcached->delete('times');
+        redirect('/welcome/', 'refresh');
+    }
+
+    public function memallreset() {
+        $this->load->driver('cache');
+        $this->cache->memcached->clean();
+        redirect('/welcome/', 'refresh');
     }
 
     // mro test 시나리오 - main
