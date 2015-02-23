@@ -38,8 +38,14 @@ class WelcomeBiz extends CI_Model {
                 $sql_prm[$v] = $prm[$v];
             }
         }
-        $return['ret'] = 'OK';
-        $return['msg'] = $this->welcome->getList2($sql_prm);
+        $this->load->driver('cache');
+        $memkey = sprintf("WelcomeDao::getList2(%s)", serialize($sql_prm));
+        $return = $this->cache->memcached->get($memkey);
+        if(empty($return)) {
+            $return['ret'] = 'OK';
+            $return['msg'] = $this->welcome->getList2($sql_prm);
+            $this->cache->memcached->save($memkey, $return, 60*1);
+        }
         return $return;
     }
 

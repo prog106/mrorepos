@@ -8,7 +8,6 @@ class WelcomeDao extends CI_Model {
         parent::__construct();
         $this->db1 = $this->load->database('inkocore', TRUE);
         $this->db2 = $this->load->database('inkomaro', TRUE);
-        $this->load->driver('cache');
     }
 
     public function getList1($sql_prm) {
@@ -22,19 +21,12 @@ class WelcomeDao extends CI_Model {
     }
 
     public function getList2($sql_prm) {
-        $memkey = sprintf("WelcomeDao::getList2(%s)", serialize($sql_prm));
-        $return = $this->cache->memcached->get($memkey);
-        if(empty($return)) {
-            $sql = "SELECT * FROM test";
-            $res = $this->db2->query($sql, $sql_prm);
-            if($res->num_rows() > 0)
-                $ret = $res->result_array();
-            else
-                $ret = array();
-            $this->cache->memcached->save($memkey, $ret, 60*5);
-            $return = $this->cache->memcached->get($memkey);
-        }
-        return $return;
+        $sql = "SELECT * FROM test ORDER BY id DESC";
+        $res = $this->db2->query($sql, $sql_prm);
+        if($res->num_rows() > 0)
+            return $res->result_array();
+        else
+            return array();
     }
 
     public function getOne($srl) {

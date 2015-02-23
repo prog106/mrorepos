@@ -187,7 +187,7 @@ class Welcome extends CI_Controller {
         $cookie_array = array(
             'name' => 'mro',
             'value' => $this->encrypt->encode($savecookie),
-            'expire' => '0',//time(),
+            'expire' => '0',//time() + 60 * 1,
             'path' => '/',
         );
         $res = setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
