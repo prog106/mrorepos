@@ -189,8 +189,9 @@ class Welcome extends CI_Controller {
             'value' => $this->encrypt->encode($savecookie),
             'expire' => '0',//time() + 60 * 1,
             'path' => '/',
+            'domain' => $this->input->server('HTTP_HOST'),
         );
-        $res = setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
+        $res = setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path'], $cookie_array['domain']);
         if(empty($res)) {
             alertmsg(lang('error'));
         }
@@ -206,8 +207,9 @@ class Welcome extends CI_Controller {
             'value' => null,
             'expire' => null,
             'path' => '/',
+            'domain' => $this->input->server('HTTP_HOST'),
         );
-        setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path']);
+        setcookie($cookie_array['name'], $cookie_array['value'], $cookie_array['expire'], $cookie_array['path'], $cookie_array['domain']);
         if(empty($this->input->cookie('mro', true))) {
             alertmsg(lang('error'));
         }
